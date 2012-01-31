@@ -3,14 +3,7 @@
 #
 
 
-
-
-
-
-
 import simplejson , sys , os
-
-
 
 #wid =  worker id 
 #host = List of host
@@ -42,6 +35,7 @@ class workmanager:
 	
 
 	def runworker():
+		
 			
 		
 		
