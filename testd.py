@@ -9,13 +9,13 @@ class Mydeamon (Daemon):
 			time.sleep(100)
 
 if __name__ == "__main__":
-	daemon = Mydeamon( '/tmp/daemon-example.pid')
+	daemon = Mydeamon( '/tmp/daemon.pid')
 	if 'start' == sys.argv[1]:
 		daemon.start()
-	if 'stop' == sys.argv[1]:
+	elif 'stop' == sys.argv[1]:
 		daemon.stop()
-	if 'restart' == sys.argv[1]:
+	elif 'restart' == sys.argv[1]:
 		daemon.restart()
 	else:
-		print " unknow"
+		print " unknown"
 
