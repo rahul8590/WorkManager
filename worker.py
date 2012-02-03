@@ -12,7 +12,14 @@ host = ['localhost:4730']
 
 
 
-#
+
+def fun():
+    print " this is a tes fun"
+
+
+
+
+
 # Run the ssh task
 #
 def exe_job(worker, job):
@@ -49,6 +56,7 @@ def exe_job(worker, job):
 # Main function
 #
 def main():
+    print " this is the worker main function running .. ho haaa "
     gm_worker = gearman.GearmanWorker(host)
     gm_worker.register_task('exe_job',exe_job) 
     gm_worker.work()
