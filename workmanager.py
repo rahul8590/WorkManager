@@ -7,7 +7,7 @@ import simplejson , sys , os
 import worker
 from fabric  import * 
 from fabric.api import *
-
+import gevent
 
 #wid =  worker id 
 #host = List of host
@@ -41,22 +41,31 @@ class workmanager:
 		self._wphost = self._pool/self._nhost
 
 
+
+
 		
-	#instantiate  worker instances. 
-	def runworker(host):
-		for i in self._host:		
-			env.host_string = i
-			j = 0
-			while j < self._wphost:
-				run (self._cmd)
-				j += 1 
+#instantiate  worker instances. 
+def runworker(host):
+	env.host_string = host
+	j = 0
+	while j < self._wphost:
+		run (self._cmd)
+		j += 1 
+
+
+#Program to check the status of the status workers
+def check_status():
+	
+
+
 
 
 def main():
 	work = workmanager()
 	work.allocate()
-	work.runworker()
-
+	jobs = [gevent.spawn( work.runworker , h) for h in work.host ] 
+	gevent.joinall()
+	
 
 
 if __name__ == '__main__':
